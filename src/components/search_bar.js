@@ -24,20 +24,27 @@ class SearchBar extends Component {
     //Here we care about the term the user endered
   }
 
-    render(){ //method so it can renders itself. it is still a function despite the syntax
-      return (
-        <div>
-          <input
-            value={this.state.term}
-            onChange={event => this.setState({ term: event.target.value })}/>
+  render(){ //method so it can renders itself. it is still a function despite the syntax
+    return (
+      <div className="search-bar">
+        <input
+          value={this.state.term}
+          onChange={event => this.onInputChange(event.target.value)}/>
 
-        </div>
-      );
-      //onChange is an out of the box event. It is a default react property.
-      //setState changes the state of the instance of a class
-      //Whenever we reference a javascript variable, we wrap it around {}
-    };
-};
+      </div>
+    );
+    //onChange is an out of the box event. It is a default react property.
+    //setState changes the state of the instance of a class
+    //Whenever we reference a javascript variable, we wrap it around {}
+  };
+
+
+  onInputChange(term) {
+      this.setState({term});
+      this.props.onSearchTermChange(term);
+  };
+
+}
   //onInputChange(event) { //We define an event handler
 //    //we use the event input to access the value of the input
 //    console.log(event.target.value);
